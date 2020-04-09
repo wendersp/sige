@@ -21,8 +21,10 @@ import javax.annotation.PostConstruct;
 @SessionScoped
 public class UsuarioMBean implements Serializable {
 
-    private  Usuario usuario;
+    private Usuario usuario;
     private List<Usuario> listaUsuario;
+    
+    private String valorPesquisar;
     
     public UsuarioMBean() {
         
@@ -34,15 +36,27 @@ public class UsuarioMBean implements Serializable {
         this.listaUsuario = new ArrayList<>();
     }
     
-    public String novo() {
+    public String botaoNovo() {
         this.usuario = new Usuario();
         return "cadUsuario?faces-redirect=true";
     }
     
-    public String salvar() {
+    public String botaoSalvar() {
         listaUsuario.add(usuario);                
         usuario = new Usuario();
         return "consUsuario?faces-redirect=true";
+    }
+    
+    public void botaoPesquisar() {
+        
+    }
+    
+    public void botaoExcluir() {
+        
+    }
+    
+    public void botaoEditar() {
+        
     }
         
     public Usuario getUsuario() {
@@ -56,5 +70,14 @@ public class UsuarioMBean implements Serializable {
     public List<Usuario> getListaUsuario() {
         return listaUsuario;
     }   
+
+    public String getValorPesquisar() {
+        return valorPesquisar;
+    }
+
+    public void setValorPesquisar(String valorPesquisar) {
+        this.valorPesquisar = valorPesquisar;
+    }
+    
     
 }

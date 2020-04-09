@@ -22,8 +22,9 @@
                 <h:inputSecret id="iPwSenha" size="10" maxlength="8" value="#{usuarioMBean.usuario.senha}"/>
             </h:panelGrid>
 
-            <h:panelGrid >
-                <h:commandButton value="Salvar" action="#{usuarioMBean.salvar()}" />
+            <h:panelGrid columns="2">
+                <h:commandButton value="Salvar" action="#{usuarioMBean.botaoSalvar()}" />
+                <h:commandButton value="Pesquisar" action="consUsuario?faces-redirect=true" />
             </h:panelGrid>
             
         </h:form>            
