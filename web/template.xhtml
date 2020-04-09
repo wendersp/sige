@@ -7,24 +7,27 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="/css/default.css"/>
-        <h:outputStylesheet name="/css/cssLayout.css"/>
+        <h:outputStylesheet name="/css/cssLayout.css"/>    
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" />	
+        <script	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js" />
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/base/jquery-ui.css" type="text/css" />
+        <link rel="stylesheet"	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/cupertino/jquery-ui.css" type="text/css" />
+        <h:outputScript  name="/js/script.js"/>
+
         <title>SIGE - Sistema de Gestão Empresarial</title>
     </h:head>
 
     <h:body>
         <div id="top">
             <ui:insert name="top">
-                SIGE 1.0 - Sistema de Gestão Empresarial            
+                <ui:include src="cabecalho.xhtml"/>            
             </ui:insert>
         </div>
         <div>
             <div id="left">
                 <ui:insert name="left">
-                    <h:form>
-                        <h1><h:commandLink value="Menu" action="home?faces-redirect=true"/></h1><br/>
-                        <h:commandLink value="Usuario" action="cadUsuario?faces-redirect=true"/><br/>
-                        <h:commandLink value="Cliente" action="cadCliente?faces-redirect=true"/><br/>
-                    </h:form>
+                    <ui:include src="menu.xhtml"/>
                 </ui:insert>
             </div>
             <div id="content" class="left_content">
@@ -33,9 +36,7 @@
         </div>
         <div id="bottom">
             <ui:insert name="bottom">
-                <center>
-                    Desenvolvido Por: Wender
-                </center>
+                <ui:include src="rodape.xhtml"/>                            
             </ui:insert>
         </div>
 

@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+                
+        <h:form>
+            
+            <h:panelGrid>
+                <h:commandButton value="Novo Usuario" action="#{usuarioMBean.novo()}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="3">                
+                Nome
+                <h:inputText size="20"/>
+                <h:commandButton value="Pesquisar"/>
+            </h:panelGrid>
+            
+            <h:panelGrid>
+
+                <h:dataTable value = "#{usuarioMBean.listaUsuario}" var = "usuario"
+                             styleClass = "usuarioTable"
+                             headerClass = "usuarioTableHeader"
+                             rowClasses = "usuarioTableOddRow,usuarioTableEvenRow">
+                    <h:column>    				
+                        <f:facet name = "header">Name</f:facet>    				
+                            #{usuario.nome}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name = "header">E-mail</f:facet>
+                            #{usuario.email}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name = "header">User Name</f:facet>
+                            #{usuario.userName}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name = "header">Senha</f:facet>
+                            #{usuario.senha}
+                    </h:column>
+                    <h:column>
+                        <f:facet name = "header">Ações</f:facet>
+                        <h:commandButton value="Edit"/>
+                        <h:commandButton value="Del"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGrid>
+            
+        </h:form>
+      </ui:define>
+
+</ui:composition>

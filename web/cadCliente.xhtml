@@ -1,12 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+   
+   
     <ui:define name="content">
-        <h:form>
+        <h:form id="form">
             <h1>Cadastro de Cliente</h1>
             <br/>
             <h:panelGrid columns="2">
@@ -16,12 +18,12 @@
                 <h:inputText id="iTxtNome" size="50"/>                
                 CPF
                 <h:panelGroup>
-                    <h:inputText id="iTxtCpf" size="15" />
+                    <h:inputText id="iTxtCpf"  size="15" maxlength="14"/>                        
                     R.G.
                     <h:inputText id="iTxtRG" size="15" />
                 </h:panelGroup>
                 Data Nasc.
-                <h:inputText id="iTxtDataNascimento" size="10" />
+                <h:inputText id="iTxtDataNascimento"  size="10" />
                 E-Mail
                 <h:inputText id="iTxtEmail" size="50"/>
                 Telefone
@@ -37,7 +39,7 @@
                 <h:inputText id="iTxtEndereco" size="50"/>
                 Cep
                 <h:inputText id="iTxtCep" size="10"/>
-                                    
+
             </h:panelGrid>
             <h:panelGrid >
                 <h:commandButton value="Salvar"/>
