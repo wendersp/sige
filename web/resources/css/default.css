@@ -28,26 +28,44 @@ a:link:hover, a:visited:hover  {
     text-decoration : underline;
 }
 
-.usuarioTable {
-    border-collapse:collapse;
-    border:1px solid #000000;
+.tabela {    
+    border:1px solid highlight;
 }
 
-.usuarioTableHeader {
+.tabelaCabecalho {
    text-align:center;
-   background:none repeat scroll 0 0 #B5B5B5;
-   border-bottom:1px solid #000000;  
-   padding:2px;
+   font: 14px Arial, sans-serif;
+   font-weight: bold;
+   color: snow;
+   background: black;
 }
 
-.usuarioTableOddRow {
-   text-align:center;
-   background:none repeat scroll 0 0 #FFFFFFF;	
+.tabelaColunaId {
+   text-align:center;   
+   width: 50px;
 }
 
-.usuarioTableEvenRow {
-   text-align:center;
-   background:none repeat scroll 0 0 #D20005;
+.tabelaColuna150px {
+   width: 150px;
+}
+
+.tabelaColuna250px {
+   width: 250px;
+}
+
+.tabelaColunaAcoes {
+   width: 150px;
+   text-align: center;
+}
+
+
+
+.tabelaLinha1 {
+   background: #B5B5B5;
+}
+
+.tabelaLinha2 {
+   background: white;
 }
 
 

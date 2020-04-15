@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package br.com.sige.controller;
 
-import br.com.sige.entidade.Usuario;
+import br.com.sige.modelo.entidade.Usuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import ber.com.sige.modelo.sessionbean.UsuarioSBean;
 
 /**
  *
@@ -21,7 +23,11 @@ import javax.annotation.PostConstruct;
 @SessionScoped
 public class UsuarioMBean implements Serializable {
 
+    @EJB
+    private UsuarioSBean usuarioSBean;
+    
     private Usuario usuario;
+    
     private List<Usuario> listaUsuario;
     
     private String valorPesquisar;
@@ -42,21 +48,21 @@ public class UsuarioMBean implements Serializable {
     }
     
     public String botaoSalvar() {
-        listaUsuario.add(usuario);                
+        usuarioSBean.salvar(usuario);
         usuario = new Usuario();
         return "consUsuario?faces-redirect=true";
     }
     
     public void botaoPesquisar() {
-        
+        listaUsuario = usuarioSBean.pesquisar(valorPesquisar);
     }
     
     public void botaoExcluir() {
-        
+        usuarioSBean.excluir(usuario);
     }
     
-    public void botaoEditar() {
-        
+    public String botaoEditar() {
+        return "cadUsuario?faces-redirect=true";
     }
         
     public Usuario getUsuario() {
