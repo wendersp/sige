@@ -8,24 +8,21 @@
 
     <ui:define name="content">
         <h:form>
-            <h1>Cadastro de Usuario</h1>
+            <h1>Cadastro de Cidade</h1>
             <br/>
             <h:panelGrid columns="2" >
                 Id
-                <h:inputText id="iTxtId" size="10"/>
+                <h:inputText id="iTxtId" size="10" value="#{cidadeMBean.cidade.id}"/>
                 Nome
-                <h:inputText id="iTxtNome" size="50" value="#{usuarioMBean.usuario.nome}" />
-                E-Mail
-                <h:inputText id="iTxtEmail" size="50" value="#{usuarioMBean.usuario.email}"/>
-                Usuario
-                <h:inputText id="iTxtUserName" size="10" maxlength="10" value="#{usuarioMBean.usuario.userName}"/>
-                Senha
-                <h:inputSecret id="iPwSenha" size="10" maxlength="8" value="#{usuarioMBean.usuario.senha}"/>
+                <h:inputText id="iTxtNome" size="50" value="#{cidadeMBean.cidade.nome}" />
+                Estado
+                <h:inputText id="iTxtEstado" size="20" value="#{cidadeMBean.cidade.estado}"/>
+                
             </h:panelGrid>
 
             <h:panelGrid columns="2">
-                <h:commandButton value="Salvar" action="#{usuarioMBean.botaoSalvar()}" />
-                <h:commandButton value="Pesquisar" action="consUsuario?faces-redirect=true" />
+                <h:commandButton value="Salvar" action="#{cidadeMBean.botaoSalvar()}" />
+                <h:commandButton value="Pesquisar" action="consCidade?faces-redirect=true" />
             </h:panelGrid>
             
         </h:form>            
