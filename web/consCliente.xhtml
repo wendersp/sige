@@ -11,19 +11,19 @@
                 
         <h:form>            
             <h:panelGrid>
-                <h:commandButton value="Novo Usuario" 
-                                 action="#{usuarioMBean.botaoNovo()}"/>
+                <h:commandButton value="Novo Cliente" 
+                                 action="#{clienteMBean.botaoNovo()}"/>
             </h:panelGrid>
+            <h:messages showSummary="false" showDetail="true" />
             <h:panelGrid columns="3">                
                 Nome
-                <h:inputText size="20" value="#{usuarioMBean.valorPesquisar}"/>
-                <h:commandButton value="Pesquisar" action="#{usuarioMBean.botaoPesquisar()}"/>
+                <h:inputText size="20" value="#{clienteMBean.valorPesquisar}"/>
+                <h:commandButton value="Pesquisar" action="#{clienteMBean.botaoPesquisar()}" />
             </h:panelGrid>
             
             <h:panelGrid>
 
-                <h:dataTable value = "#{usuarioMBean.listaUsuario}" 
-                             var = "usuario"
+                <h:dataTable value = "#{clienteMBean.listaCliente}" var = "cliente"
                              styleClass = "tabela"
                              headerClass = "tabelaCabecalho"
                              columnClasses="tabelaColunaId,tabelaColuna250px,
@@ -31,30 +31,27 @@
                              rowClasses = "tabelaLinha1,tabelaLinha2">
                     <h:column>    				
                         <f:facet name = "header">ID</f:facet>    				
-                            #{usuario.id}
+                            #{cliente.id}
                     </h:column>
                     <h:column>    				
                         <f:facet name = "header">Name</f:facet>    				
-                            #{usuario.nome}
+                            #{cliente.nome}
                     </h:column>
 
                     <h:column>
                         <f:facet name = "header">E-mail</f:facet>
-                            #{usuario.email}
+                            #{cliente.email}
                     </h:column>
 
-                    <h:column>
-                        <f:facet name = "header">User Name</f:facet>
-                            #{usuario.userName}
-                    </h:column>
-
+                    
                     <h:column>
                         <f:facet name = "header">Ações</f:facet>
-                        <h:commandButton value="Edit" action="#{usuarioMBean.botaoEditar()}">
-                            <f:setPropertyActionListener  value="#{usuario}" target="#{usuarioMBean.usuario}" /> 
+                        
+                        <h:commandButton value="Edit" action="#{clienteMBean.botaoEditar()}">
+                            <f:setPropertyActionListener  value="#{cliente}" target="#{clienteMBean.cliente}" /> 
                         </h:commandButton>
-                        <h:commandButton value="Del" action="#{usuarioMBean.botaoExcluir()}" >
-                            <f:setPropertyActionListener value="#{usuario}" target="#{usuarioMBean.usuario}"/>
+                        <h:commandButton value="Del" action="#{clienteMBean.botaoExcluir()}"  >
+                            <f:setPropertyActionListener value="#{cliente}" target="#{clienteMBean.cliente}"/>
                         </h:commandButton>
                     </h:column>
                 </h:dataTable>

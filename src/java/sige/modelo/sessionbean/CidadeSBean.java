@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ber.com.sige.modelo.sessionbean;
+package sige.modelo.sessionbean;
 
-import br.com.sige.modelo.entidade.Cidade;
+import sige.modelo.entidade.Cidade;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

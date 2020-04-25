@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ber.com.sige.modelo.sessionbean;
+package sige.modelo.sessionbean;
 
-import br.com.sige.modelo.entidade.Usuario;
+import sige.modelo.entidade.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -28,7 +28,7 @@ public class UsuarioSBean {
     }
     
     public void excluir(Usuario usuario) {
-        em.remove(em.find(Usuario.class, usuario.getId()));
+        em.remove(em.find(Usuario.class, usuario.getId()));        
     }
     
     public Usuario pesquisar(Long id) {
