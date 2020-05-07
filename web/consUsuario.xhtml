@@ -10,10 +10,12 @@
     <ui:define name="content">
                 
         <h:form>            
+            <h:messages showDetail="true"/>
             <h:panelGrid>
                 <h:commandButton value="Novo Usuario" 
                                  action="#{usuarioMBean.botaoNovo()}"/>
             </h:panelGrid>
+            
             <h:panelGrid columns="3">                
                 Nome
                 <h:inputText size="20" value="#{usuarioMBean.valorPesquisar}"/>

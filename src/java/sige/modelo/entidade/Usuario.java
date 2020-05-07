@@ -30,6 +30,10 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "Usuario.findByUserNameSenha",
             query = "SELECT u FROM Usuario u WHERE u.userName = :userName AND u.senha = :senha"
+    ),
+    @NamedQuery(
+            name = "Usuario.findByUserName",
+            query = "SELECT u FROM Usuario u WHERE u.userName = :userName"
     )
 })
 public class Usuario implements Serializable {
@@ -41,7 +45,7 @@ public class Usuario implements Serializable {
     private String nome;
     @Column(name = "email", length = 50)
     private String email;
-    @Column(name = "user_name", length = 10, nullable = false)
+    @Column(name = "user_name", length = 10, nullable = false, unique = true)
     private String userName;
     @Column(name = "senha", length = 10, nullable = false)
     private String senha;

@@ -38,6 +38,8 @@ public class Cidade implements Serializable {
     @Column(name = "estado", length = 50)
     private String estado;
 
+   
+    
     public Long getId() {
         return id;
     }

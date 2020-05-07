@@ -20,21 +20,20 @@ import javax.persistence.Query;
 public class CidadeSBean {
 
     @PersistenceContext(unitName = "sigePU")
-    EntityManager em;
-    
-    
+    private EntityManager em;
+
     public void salvar(Cidade cidade) {
-         em.merge(cidade);
+        em.merge(cidade);
     }
-    
+
     public void excluir(Cidade cidade) {
         em.remove(em.find(Cidade.class, cidade.getId()));
     }
-    
+
     public Cidade pesquisar(Long id) {
         return em.find(Cidade.class, id);
     }
-    
+
     public List<Cidade> pesquisar(String nome) {
         List<Cidade> listaCidades;
         Query consulta = em.createNamedQuery("Cidade.findByNome");
