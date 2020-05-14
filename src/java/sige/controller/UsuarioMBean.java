@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import sige.controller.uteis.UteisJsf;
 import sige.modelo.sessionbean.UsuarioSBean;
 
@@ -50,17 +48,14 @@ public class UsuarioMBean implements Serializable {
         return "cadUsuario?faces-redirect=true";
     }
 
-    public String botaoSalvar() {
+    public void botaoSalvar() {
         try {
             usuarioSBean.salvar(usuario);
-            UteisJsf.addMensagemInfo("Usuario Salvo com sucesso. ", "");
+            UteisJsf.addMensagemInfo("INFO: - ", "Usuario Salvo com sucesso.");
+            usuario = new Usuario();
         } catch (Exception ex) {
-            UteisJsf.addMensagemErro("Erro ao Salvar - ", ex.getMessage());
-            return null;
-        }
-        usuario = new Usuario();
-        return null;
-        //return "consUsuario?faces-redirect=true";
+            UteisJsf.addMensagemErro("ATENÇÃO: - ", ex.getMessage());           
+        }                
     }
 
     public void botaoPesquisar() {
@@ -68,7 +63,12 @@ public class UsuarioMBean implements Serializable {
     }
 
     public void botaoExcluir() {
-        usuarioSBean.excluir(usuario);
+        try {
+            usuarioSBean.excluir(usuario);
+            UteisJsf.addMensagemInfo("INFO: - ", "Usuario Excluido com sucesso.");
+        } catch (Exception ex) {
+            UteisJsf.addMensagemErro("ATENÇÃO: - ", ex.getMessage());
+        }
     }
 
     public String botaoEditar() {

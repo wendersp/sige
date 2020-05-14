@@ -9,8 +9,8 @@ import sige.modelo.entidade.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 /**
@@ -33,27 +33,45 @@ public class UsuarioSBean {
     }
 
     private void validarDados(Usuario usuario) throws Exception {
-        // validarUsuarioUnico(usuario.getUserName());
+        validarUsuarioUnico(usuario);
         if (usuario.getSenha().length() < 8) {
             throw new Exception("Senha não poder ser menor do que 8 caracteres.");
         }
     }
 
-    private void validarUsuarioUnico(String userName) throws Exception {
-        Query consulta = em.createNamedQuery("Usuario.findByUserName");
-        consulta.setParameter("userName", userName);
-        Usuario usuario = (Usuario) consulta.getSingleResult();
-        if (usuario != null || usuario.getId() > 0) {
-            throw new Exception("Usuario já existe.");
+    private void validarUsuarioUnico(Usuario usuarioValidar) throws Exception {
+        try {
+            Query consulta = em.createNamedQuery("Usuario.findByUserName");
+            consulta.setParameter("userName", usuarioValidar.getUserName());
+            Usuario usuarioBD = (Usuario) consulta.getSingleResult();
+            if (usuarioBD != null) {
+                if (!usuarioValidar.equals(usuarioBD)) {
+                    throw new Exception("Usuario já existe.");
+                }
+            }
+        } catch (NoResultException rex) {
+
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
         }
     }
 
-    public void excluir(Usuario usuario) {
-        em.remove(em.find(Usuario.class, usuario.getId()));
+    public void excluir(Usuario usuario) throws Exception {
+        try {
+            em.remove(em.find(Usuario.class, usuario.getId()));
+        } catch (Exception ex) {
+            throw new Exception("Não foi possivel excluir o usuario.");
+        }
     }
 
-    public Usuario pesquisar(Long id) {
-        return em.find(Usuario.class, id);
+    public Usuario pesquisar(Long id) throws Exception {
+        try {
+            return em.find(Usuario.class, id);
+        } catch (IllegalArgumentException ex) {
+            throw new Exception("Valor pesquisado invalido.");
+        } catch (Exception ex) {
+            throw new Exception("Ocorreu um erro ao pesquisar o id do usuario.");
+        }
     }
 
     public List<Usuario> pesquisar(String nome) {
@@ -62,5 +80,16 @@ public class UsuarioSBean {
         consulta.setParameter("nome", nome.toUpperCase() + "%");
         listaUsuarios = consulta.getResultList();
         return listaUsuarios;
+    }
+
+    public Usuario logar(String userName, String senha) throws Exception {
+        try {
+            Query consulta = em.createNamedQuery("Usuario.findByUserNameSenha");
+            consulta.setParameter("userName", userName);
+            consulta.setParameter("senha", senha);
+            return (Usuario) consulta.getSingleResult();
+        } catch (Exception ex) {
+            throw new Exception("Usuario ou Senha invalidos.");
+        }
     }
 }
