@@ -36,9 +36,15 @@
                         <br/>
                         <h:panelGrid columns="2">
                             <h:outputLabel for="iTxtUserName" value="Usuario"/>
-                            <h:inputText id="iTxtUserName" maxlength="10" size="10" value="#{loginMBean.userName}" />
+                            <h:panelGroup>
+                                <h:inputText id="iTxtUserName" maxlength="10" size="10" value="#{loginMBean.userName}" />
+                            <h:message for="iTxtUserName"/>
+                            </h:panelGroup>
                             <h:outputLabel for="iSecrSenha" value="Senha"/>
-                            <h:inputSecret id="iSecrSenha" maxlength="10" size="10" value="#{loginMBean.senha}"/>
+                            <h:panelGroup>
+                            <h:inputSecret id="iSecrSenha" maxlength="10" size="10" value="#{loginMBean.senha}" />
+                            <h:message for="iSecrSenha"/>
+                            </h:panelGroup>
                         </h:panelGrid>
                         <br/>
                         <h:commandButton value="Entrar" action="#{loginMBean.logar()}"/>

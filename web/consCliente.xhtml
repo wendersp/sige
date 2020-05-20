@@ -17,13 +17,15 @@
             <h:messages showSummary="false" showDetail="true" />
             <h:panelGrid columns="3">                
                 Nome
-                <h:inputText size="20" value="#{clienteMBean.valorPesquisar}"/>
+                <h:inputText id="iTxtValorPesquisar" size="20" value="#{clienteMBean.valorPesquisar}">
+                    <f:ajax listener="#{clienteMBean.botaoPesquisar()}" execute="iTxtValorPesquisar" render="dtCliente" event="keyup"/>
+                </h:inputText>
                 <h:commandButton value="Pesquisar" action="#{clienteMBean.botaoPesquisar()}" />
             </h:panelGrid>
             
             <h:panelGrid>
 
-                <h:dataTable value = "#{clienteMBean.listaCliente}" var = "cliente"
+                <h:dataTable id="dtCliente" value = "#{clienteMBean.listaCliente}" var = "cliente"
                              styleClass = "tabela"
                              headerClass = "tabelaCabecalho"
                              columnClasses="tabelaColunaId,tabelaColuna250px,

@@ -67,6 +67,16 @@ public class ClienteSBean {
             throw new Exception("Erro ao pesquisar o cliente por Cidade e Nome. " + ex.getMessage());
         }
     }
+    
+    public List<Cliente> pesquisarPorCidade(Cidade cidade) throws Exception {
+        try {
+            Query consulta = em.createNamedQuery("Cliente.pesquisarPorCidade");
+            consulta.setParameter("cidade", cidade);            
+            return consulta.getResultList();
+        } catch (Exception ex) {
+            throw new Exception("Erro ao pesquisar o cliente por Cidade e Nome. " + ex.getMessage());
+        }
+    }
 
     public Cliente pesquisarPorCpfCnpj(String cpfCnpj) throws Exception {
         try {

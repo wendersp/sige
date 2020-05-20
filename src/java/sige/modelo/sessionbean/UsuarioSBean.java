@@ -82,14 +82,5 @@ public class UsuarioSBean {
         return listaUsuarios;
     }
 
-    public Usuario logar(String userName, String senha) throws Exception {
-        try {
-            Query consulta = em.createNamedQuery("Usuario.findByUserNameSenha");
-            consulta.setParameter("userName", userName);
-            consulta.setParameter("senha", senha);
-            return (Usuario) consulta.getSingleResult();
-        } catch (Exception ex) {
-            throw new Exception("Usuario ou Senha invalidos.");
-        }
-    }
+    
 }

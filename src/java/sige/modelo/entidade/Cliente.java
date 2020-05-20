@@ -38,6 +38,10 @@ import javax.persistence.TemporalType;
     @NamedQuery(
             name = "Cliente.findByCidadeNome",
             query = "SELECT c FROM Cliente c WHERE c.cidade = :cidade AND c.nome LIKE :nome ORDER BY c.nome"
+    ),
+    @NamedQuery(
+            name = "Cliente.pesquisarPorCidade",
+            query = "SELECT c FROM Cliente c WHERE c.cidade = :cidade"
     )
 })
 public class Cliente implements Serializable {
@@ -84,7 +88,7 @@ public class Cliente implements Serializable {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.toUpperCase();
     }
 
     public String getCpfCnpj() {
@@ -116,7 +120,7 @@ public class Cliente implements Serializable {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.toLowerCase();
     }
 
     public String getTelefone() {
@@ -148,7 +152,7 @@ public class Cliente implements Serializable {
     }
 
     public void setBairro(String bairro) {
-        this.bairro = bairro;
+        this.bairro = bairro.toUpperCase();
     }
 
     public String getEndereco() {
@@ -156,7 +160,7 @@ public class Cliente implements Serializable {
     }
 
     public void setEndereco(String endereco) {
-        this.endereco = endereco;
+        this.endereco = endereco.toUpperCase();
     }
 
     public String getCep() {

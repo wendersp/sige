@@ -9,9 +9,6 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -33,83 +30,79 @@ public class ClienteMBean implements Serializable {
     private ClienteSBean clienteSBean;
     @EJB
     private CidadeSBean cidadeSBean;
-    
+
     private Cliente cliente;
     private List<Cidade> listaCidade;
     private List<Cliente> listaCliente;
-    
+
     private String valorPesquisar;
-    
+
     private CidadeConverter cidadeConverter;
-    
-    
-    
-    
-    
+
     public ClienteMBean() {
-        
+
     }
-    
-        
+
     public String botaoNovo() {
         carregarListaCidade();
         cliente = new Cliente();
         return "cadCliente";
     }
-    
-    public String  botaoSalvar() {
+
+    public String botaoSalvar() {
         try {
             clienteSBean.salvar(cliente);
-            FacesContext.getCurrentInstance().addMessage(null, 
-				new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-                        "Sucesso", "Cliente salvo com sucesso"));
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Sucesso", "Cliente salvo com sucesso"));
             return "consCliente";
         } catch (Exception ex) {
-            FacesContext.getCurrentInstance().addMessage(null, 
-				new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-                        "Erro Salvar", "Error ao salvar cliente. " + ex.getMessage()));
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Erro Salvar", "Error ao salvar cliente. " + ex.getMessage()));
         }
         return null;
-    }    
-    
+    }
+
+   
+
     public String botaoEditar() {
         carregarListaCidade();
         return "cadCliente";
     }
-    
+
     public void botaoExcluir() {
         try {
             clienteSBean.excluir(cliente);
             /*se excluir do banco já removo o objeto da lista que ele vai atualizar o dataTable*/
             this.listaCliente.remove(cliente);
         } catch (Exception ex) {
-            
-            FacesMessage fmsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-                        "Erro Excluir", "Error ao excluir cliente. " + ex.getMessage());
+
+            FacesMessage fmsg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Erro Excluir", "Error ao excluir cliente. " + ex.getMessage());
             /*a mensagem não foi mostrada na tela por que não tinha passado para FacesContext.getCurrentiInstance()
-            */
+             */
             FacesContext.getCurrentInstance().addMessage(null, fmsg);
         }
     }
-    
-    
+
     public void botaoPesquisar() {
-        try {           
+        try {
             /*
             Ontem na aula não estava mostrando por que não tinha passado o resultado da
             pesquisa para a listaCliente
-            */
+             */
             this.listaCliente = clienteSBean.pesquisar(valorPesquisar);
         } catch (Exception ex) {
-            FacesContext.getCurrentInstance().addMessage(null, 
-				new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao Pesquisar", ex.getMessage()));           
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao Pesquisar", ex.getMessage()));
         }
     }
-    
+
     private void carregarListaCidade() {
-       this.listaCidade = cidadeSBean.pesquisar("");
-       this.cidadeConverter = new CidadeConverter();
-       this.cidadeConverter.setCidadeSBean(cidadeSBean);
+        this.listaCidade = cidadeSBean.pesquisar("");
+        this.cidadeConverter = new CidadeConverter();
+        this.cidadeConverter.setCidadeSBean(cidadeSBean);
     }
 
     public Cliente getCliente() {
@@ -151,8 +144,5 @@ public class ClienteMBean implements Serializable {
     public void setCidadeConverter(CidadeConverter cidadeConverter) {
         this.cidadeConverter = cidadeConverter;
     }
-    
-    
-    
-    
+
 }

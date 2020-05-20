@@ -5,12 +5,13 @@
  */
 package sige.controller;
 
+import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 import sige.controller.uteis.UteisJsf;
 import sige.modelo.entidade.Usuario;
-import sige.modelo.sessionbean.UsuarioSBean;
+import sige.modelo.sessionbean.LogarSBean;
 
 /**
  *
@@ -18,12 +19,16 @@ import sige.modelo.sessionbean.UsuarioSBean;
  */
 @Named(value = "loginMBean")
 @RequestScoped
-public class LoginMBean {
+public class LoginMBean implements Serializable{
+    
     private String userName = "";
     private String senha = "";
+    
+    
     private Usuario usuario = new Usuario();
+    
     @EJB
-    private UsuarioSBean usuarioSBean;
+    private LogarSBean logarSBean;
     
     public LoginMBean() {
 
@@ -31,7 +36,7 @@ public class LoginMBean {
     
     public String logar() {
         try {
-            this.usuario = usuarioSBean.logar(this.userName, this.senha);
+            this.usuario = logarSBean.logar(this.userName, this.senha);
             if (this.usuario != null) {
                 UteisJsf.setObjectSession("usuarioLogado", this.usuario);
                 return "home";
@@ -44,6 +49,11 @@ public class LoginMBean {
         this.userName = "";
         this.senha = "";
         return null;
+    }
+    
+    public String sair() {
+        UteisJsf.removeObjectSession("usuarioLogado");        
+        return "login";
     }
 
     public String getUserName() {

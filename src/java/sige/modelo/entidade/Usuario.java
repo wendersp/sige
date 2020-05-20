@@ -28,7 +28,7 @@ import javax.persistence.Table;
             query = "SELECT u FROM Usuario u WHERE u.nome LIKE :nome"
     ),
     @NamedQuery(
-            name = "Usuario.findByUserNameSenha",
+            name = "Usuario.logar",
             query = "SELECT u FROM Usuario u WHERE u.userName = :userName AND u.senha = :senha"
     ),
     @NamedQuery(

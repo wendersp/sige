@@ -38,8 +38,6 @@ public class Cidade implements Serializable {
     @Column(name = "estado", length = 50)
     private String estado;
 
-   
-    
     public Long getId() {
         return id;
     }
@@ -53,7 +51,7 @@ public class Cidade implements Serializable {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.toUpperCase();
     }
 
     public String getEstado() {
@@ -61,10 +59,8 @@ public class Cidade implements Serializable {
     }
 
     public void setEstado(String estado) {
-        this.estado = estado;
+        this.estado = estado.toUpperCase();
     }
-    
-    
 
     @Override
     public int hashCode() {
@@ -90,5 +86,5 @@ public class Cidade implements Serializable {
     public String toString() {
         return "br.com.sige.modelo.entidade.Cidade[ id=" + id + " ]";
     }
-    
+
 }
