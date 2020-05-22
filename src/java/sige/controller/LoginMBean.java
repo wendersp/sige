@@ -7,7 +7,7 @@ package sige.controller;
 
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import sige.controller.uteis.UteisJsf;
 import sige.modelo.entidade.Usuario;
@@ -18,22 +18,21 @@ import sige.modelo.sessionbean.LogarSBean;
  * @author wender
  */
 @Named(value = "loginMBean")
-@RequestScoped
-public class LoginMBean implements Serializable{
-    
+@ViewScoped
+public class LoginMBean implements Serializable {
+
     private String userName = "";
     private String senha = "";
-    
-    
+
     private Usuario usuario = new Usuario();
-    
+
     @EJB
     private LogarSBean logarSBean;
-    
+
     public LoginMBean() {
 
     }
-    
+
     public String logar() {
         try {
             this.usuario = logarSBean.logar(this.userName, this.senha);
@@ -50,10 +49,10 @@ public class LoginMBean implements Serializable{
         this.senha = "";
         return null;
     }
-    
+
     public String sair() {
-        UteisJsf.removeObjectSession("usuarioLogado");        
-        return "login";
+        UteisJsf.removeObjectSession("usuarioLogado");
+        return "login?faces-redirect=true";
     }
 
     public String getUserName() {

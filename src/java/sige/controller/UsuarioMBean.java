@@ -7,12 +7,12 @@ package sige.controller;
 
 import sige.modelo.entidade.Usuario;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.view.ViewScoped;
 import sige.controller.uteis.UteisJsf;
 import sige.modelo.sessionbean.UsuarioSBean;
 
@@ -21,7 +21,7 @@ import sige.modelo.sessionbean.UsuarioSBean;
  * @author wender
  */
 @Named(value = "usuarioMBean")
-@SessionScoped
+@ViewScoped
 public class UsuarioMBean implements Serializable {
 
     @EJB

@@ -8,9 +8,7 @@ package sige.controller;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import sige.controller.uteis.UteisJsf;
 import sige.modelo.entidade.Usuario;
 
